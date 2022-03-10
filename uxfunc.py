@@ -1,4 +1,3 @@
-
 def scroll_menu(list):
     for o in list:
         print(o)
