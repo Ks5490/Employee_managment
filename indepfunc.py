@@ -1,4 +1,3 @@
-
 def string_input(type):
     while True:
         nam = input(f"Please enter the {type} of the employee: ")
@@ -8,39 +7,45 @@ def string_input(type):
             print("Name must be a minimum of 2 letters")
 
 
-def Birth_yr():
-    while True:
-        year = input(f"What is the employee's year of birth: ")
-        try:
-            x = int(year)
-            if 1900 <= x <= 2004:
-                return x
-            else:
+def date_check(type):
+    if type == "day":
+        while True:
+            day = input(f"What is the employee's day of birth: ")
+            try:
+                x = int(day)
+                if 1 <= x <= 31:
+                    return x
+                else:
+                    print("Must be an integer between 1 and 31")
+            except ValueError:
+                print("Must be an integer between 1 and 31")
+    if type == "month":
+        while True:
+            month = input(f"What is the employee's month of birth: ")
+            try:
+                x = int(month)
+                if 1 <= x <= 12:
+                    return x
+                else:
+                    print("Must be an integer between 1 and 12")
+            except ValueError:
+                print("Must be an integer between 1 and 12")
+    if type == "year":           
+        while True:
+            year = input(f"What is the employee's year of birth: ")
+            try:
+                x = int(year)
+                if 1900 <= x <= 2004:
+                    return x
+                else:
+                    print("Must be an integer between 1900 and 2004")
+            except ValueError:
                 print("Must be an integer between 1900 and 2004")
-        except ValueError:
-            print("Must be an integer between 1900 and 2004")
 
 
-def Birth_month():
-    while True:
-        month = input(f"What is the employee's month of birth: ")
-        try:
-            x = int(month)
-            if 1 <= x <= 12:
-                return x
-        except ValueError:
-            print("Must be an integer between 1 and 12")
 
 
-def Birth_day():
-    while True:
-        day = input(f"What is the employee's day of birth: ")
-        try:
-            x = int(day)
-            if 1 <= x <= 31:
-                return x
-        except ValueError:
-            print("Must be an integer between 1 and 31")
+
 
 
 def get_uni_status():
