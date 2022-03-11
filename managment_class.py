@@ -1,17 +1,18 @@
 
+from indepfunc import id_valid
 import uxfunc
 
 
 class employee():
     def __init__(self):
         self.data = {}
-        self.first_name = employee.string_gen("First Name")
+        ##self.first_name = employee.string_gen("First Name")
         self.last_name = employee.string_gen("Last Name")
-       ## self.birth_year = employee.date_check("year")
-       ## self.birth_month = employee.date_check("month")
+        ##self.birth_year = employee.date_check("year")
+        ##self.birth_month = employee.date_check("month")
         ##self.birth_day = employee.date_check("day")
-       ## self.position = employee.string_gen("position")
-       ## self.uni_status = employee.get_uni_status()
+        ##self.position = employee.string_gen("position")
+        ##self.uni_status = employee.get_uni_status()
         self.employee_id = None
 
 
@@ -84,90 +85,188 @@ class employee():
             return False
 
 
-    def update(id):
-         while True:
+    def update():
+        update_id = employee.id_valid("data you want to update")
+        print(worker.data)
+        if update_id == False:
+                print()
+            
+        elif All_employees_dict.get(update_id) is not None:
+            while True:
 
-            poss_opt = ("UPDATE MENU", "------------------------", "What key do you want to update?: ","1 - Employee ID", "2 - First Name", "3 - Last Name", "4 - Year of Birth", "5 - Month of Birth", "6 - Day of Birth", "7 - Position", "8 - University Status", "9 - Exit Update menu: ")
-            change = uxfunc.scroll_menu(poss_opt)
-            if change == "1":
-                print("Coming")
-                       
-            elif change == "2":
-                new_first_name = employee.string_gen("first name")
-                worker.data["First Name"] = new_first_name
+                poss_opt = ("UPDATE MENU", "------------------------", "What key do you want to update?: ","1 - Employee ID", "2 - First Name", "3 - Last Name", "4 - Year of Birth", "5 - Month of Birth", "6 - Day of Birth", "7 - Position", "8 - University Status", "9 - Exit Update menu: ")
+                change = uxfunc.scroll_menu(poss_opt)
+                if change == "1":
+                    while True:
+                        new_id = id_valid("add")
+                        if new_id in All_employees_dict.keys():
+                                print("This ID is taken")
+                                continue
+                        else:
+                            old_object_name = worker.last_name + str(worker.data["Employee ID"])
+
+                            worker.data["Employee ID"] = new_id
+
+                            new_object_name = worker.last_name + str(new_id)
+
+                            employee_objects_list.append(new_object_name)
+                            employee_objects_list.remove(old_object_name)
+
                 
+                            employee_objects_dict[new_object_name] = worker.data
+                            del employee_objects_dict[old_object_name]
+                            break
+                    print("Returning to Main Menu")
+                    break
 
-            elif change == "3":
-                print("Coming")
-                       
+
+                        
+                elif change == "2":
+                    new_first_name = employee.string_gen("first name")
+                    worker.data["First Name"] = new_first_name
+                    
+
+                elif change == "3":
+                    print(worker.data)
+                    print("______________________")      
+                    old_object_name = worker.data["Last Name"] + str(worker.data["Employee ID"])
+
+                    new_last_name = employee.string_gen("last name")
+                    worker.data["Last Name"] = new_last_name
+
+                    
+                    new_object_name = new_last_name + str(worker.data["Employee ID"])
                 
-            elif change == "4":
-                print("Coming")
-                       
+                    employee_objects_list.remove(old_object_name)
+                    employee_objects_list.append(new_object_name)
+
                 
-            elif change == "5":
-                print("Coming")
-                       
-                
-            elif change == "6":
-                print("Coming")
-                       
-                
-            elif change == "7":
-                print("Coming")
-                       
-                
-            elif change == "8":
-                print("Coming")
-                       
-                
-            elif change == "9":
-                break
+                    employee_objects_dict[new_object_name] = worker.data
+                    print("______________________")      
+                    del employee_objects_dict[old_object_name]
+                    print(employee_objects_dict)
+                    print("______________________")
+                    print("Returning to Main Menu")
+                    break
+                        
+                    
+                elif change == "4":
+                    new_year_ob = employee.date_check("year")
+                    worker.data["Birth Year"] = new_year_ob
+                        
+                    
+                elif change == "5":
+                    new_month_ob = employee.date_check("month")
+                    worker.data["Birth Month"] = new_month_ob
+                        
+                    
+                elif change == "6":
+                    new_day_ob = employee.data_check("day")
+                    worker.data["Birth Day"] = new_day_ob
+                        
+                    
+                elif change == "7":
+                    new_position = employee.string_gen("posiiton")
+                    worker.data["Position"] = new_position
+                        
+                    
+                elif change == "8":
+                    new_uni = employee.get_uni_status()
+                    worker.data["Graduated Uni"] = new_uni
 
-            else:
-                uxfunc.usage()
+                elif change == "9":
+                    break
 
+                else:
+                    uxfunc.usage()
 
-
-
-
-
-
+        else:
+                print()
+                print("There is no employee with this ID")
+                print()
 
 
 if __name__ == '__main__':
     employee_objects_dict = {}
     employee_objects_list = []
     All_employees_dict = {}
+    temp = None
 
     while True:
         opt = ("------------------------ ", "MAIN MENU","------------------------ ", "Do you want to: ", "1 - Add an Employee", "2 - Remove an Employee", "3 - Get total number of employees", "4 - get a list of Employees" , "5 - Retrieve the data of an employee (By ID)" ,"6 - Update employee's data","7 - Print list of employee objects", "8 - print dictionary of objects", "9 - Exit program")
         option = uxfunc.scroll_menu(opt)
         if option == "1":
             while True:
+
+                
                 worker = employee()
-                worker.data["First Name"] = worker.first_name
+               ## worker.data["First Name"] = worker.first_name
                 worker.data["Last Name"] = worker.last_name
-               ## worker.data["Birth Year"] = worker.birth_year
+              ##  worker.data["Birth Year"] = worker.birth_year
                ## worker.data["Birth Month"] = worker.birth_month
                ## worker.data["Birth Day"] = worker.birth_day
                ## worker.data["Position"] = worker.position
                ## worker.data["Graduated Uni"] = worker.uni_status
 
+                
                 while True:
                     id_verif = employee.id_valid("you want to add")
                     if id_verif in All_employees_dict:
                         print("This ID is taken")
+                        break
+                    elif id_verif == False:
+                        print()
+                        break
                     else:
                         worker.employee_id = id_verif
+                        print(worker.employee_id)
                         worker.data["Employee ID"] = worker.employee_id
-                        All_employees_dict[worker.employee_id] = worker.data
+                        All_employees_dict[id_verif] = worker.data
+
+
+                        object_name = worker.last_name + str(worker.employee_id)
+                        employee_objects_list.append(object_name)
+                        employee_objects_dict[object_name] = worker.data
+
+
+
+
+                        print(worker)
+                        print("___________")
+
+
+                        print(worker.data)
+                        print("___________")
+
+                        print(All_employees_dict)
+                        print("___________")
+
+                        print(object_name)
+
+                        object_name = worker
+                        print("___________")
+
+                        print(object_name)
+
+                        print(employee_objects_list)
+                        print(employee_objects_dict)
+
+
+
+                        
+                        
                         break
-                
-                object_name = worker.last_name + str(worker.employee_id)
-                employee_objects_list.append(object_name)
-                employee_objects_dict[object_name] = worker.data
+                    
+               
+               ## print("___________")            
+                ##print(object_name)
+               ## print("___________")
+               ## print(employee_objects_list)
+               ## print("___________")
+               ## print(employee_objects_dict)
+
                 break
+                
 
 
         elif option == "2":
@@ -222,30 +321,10 @@ if __name__ == '__main__':
 
 
         elif option == "6":
-            update_id = employee.id_valid("data you want to update")
-            if update_id == False:
-                print()
-            elif All_employees_dict.get(update_id) is not None:
-                print()
-                employee.update(update_id)
-                print()
-
-
-
-
-
-
-            else:
-                print()
-                print("There is no employee with this ID")
-                print()
-
-
-
-
+            employee.update()
 
         elif option == "7":
-            print(employee_objects_list)
+            print(All_employees_dict)
 
 
         elif option == "8":
