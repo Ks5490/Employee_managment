@@ -84,6 +84,53 @@ class employee():
             return False
 
 
+    def update(id):
+         while True:
+
+            poss_opt = ("UPDATE MENU", "------------------------", "What key do you want to update?: ","1 - Employee ID", "2 - First Name", "3 - Last Name", "4 - Year of Birth", "5 - Month of Birth", "6 - Day of Birth", "7 - Position", "8 - University Status", "9 - Exit Update menu: ")
+            change = uxfunc.scroll_menu(poss_opt)
+            if change == "1":
+                print("Coming")
+                       
+            elif change == "2":
+                new_first_name = employee.string_gen("first name")
+                worker.data["First Name"] = new_first_name
+                
+
+            elif change == "3":
+                print("Coming")
+                       
+                
+            elif change == "4":
+                print("Coming")
+                       
+                
+            elif change == "5":
+                print("Coming")
+                       
+                
+            elif change == "6":
+                print("Coming")
+                       
+                
+            elif change == "7":
+                print("Coming")
+                       
+                
+            elif change == "8":
+                print("Coming")
+                       
+                
+            elif change == "9":
+                break
+
+            else:
+                uxfunc.usage()
+
+
+
+
+
 
 
 
@@ -118,7 +165,6 @@ if __name__ == '__main__':
                         break
                 
                 object_name = worker.last_name + str(worker.employee_id)
-                print(object_name)
                 employee_objects_list.append(object_name)
                 employee_objects_dict[object_name] = worker.data
                 break
@@ -128,9 +174,8 @@ if __name__ == '__main__':
             delete_id = employee.id_valid("you want to delete")
             print()
             if delete_id == False:
-                print("HERE")
-
-            if delete_id in All_employees_dict:
+                print()
+            elif delete_id in All_employees_dict:
                 verification = input("Enter [xBCD] to confirm deletion (case sensitive): ")
                 if verification == "BBCD":
                     del All_employees_dict[delete_id]
@@ -163,8 +208,10 @@ if __name__ == '__main__':
 
         elif option == "5":
             show_id = employee.id_valid("data you want to show")
+            if show_id == False:
+                print()
           
-            if All_employees_dict.get(show_id) is not None:
+            elif All_employees_dict.get(show_id) is not None:
                 print()
                 print(All_employees_dict[show_id])
                 print()
@@ -172,6 +219,29 @@ if __name__ == '__main__':
                 print()
                 print("There is no employee with this ID")
                 print()
+
+
+        elif option == "6":
+            update_id = employee.id_valid("data you want to update")
+            if update_id == False:
+                print()
+            elif All_employees_dict.get(update_id) is not None:
+                print()
+                employee.update(update_id)
+                print()
+
+
+
+
+
+
+            else:
+                print()
+                print("There is no employee with this ID")
+                print()
+
+
+
 
 
         elif option == "7":
