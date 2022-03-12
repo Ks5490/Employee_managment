@@ -5,11 +5,11 @@ class employee():
     def __init__(self):
         self.first_name = employee.string_gen("First Name")
         self.last_name = employee.string_gen("Last Name")
-        self.birth_year = employee.date_check("year")
-        self.birth_month = employee.date_check("month")
-        self.birth_day = employee.date_check("day")
-        self.position = employee.string_gen("position")
-        self.uni_status = employee.get_uni_status()
+        ##self.birth_year = employee.date_check("year")
+        ##self.birth_month = employee.date_check("month")
+        ##self.birth_day = employee.date_check("day")
+        ##self.position = employee.string_gen("position")
+        ##self.uni_status = employee.get_uni_status()
         self.employee_id = None
         self.object_instance = None
 
@@ -137,12 +137,12 @@ class employee():
                 
 
             elif change == "3":
+                object_new_name = []
                 new_last_name = employee.string_gen("last name")
                 pointer.last_name = new_last_name
-                print("COMING")
-               
-            
-            
+                pointer.object_instance = pointer.last_name + str(pointer.employee_id)
+                object_new_name.append(pointer.object_instance)
+                
 
                     
                 
@@ -185,8 +185,6 @@ class employee():
 
 if __name__ == '__main__':
     dict_pointers_id = {}
-   
-   
 
     while True:
 
@@ -222,11 +220,11 @@ if __name__ == '__main__':
 
                 employee_dict["First Name"] = worker.first_name
                 employee_dict["Last Name"] = worker.last_name
-                employee_dict["Birth Year"] = worker.birth_year
-                employee_dict["Birth Month"] = worker.birth_month
-                employee_dict["Birth Day"] = worker.birth_day
-                employee_dict["Position"] = worker.position
-                employee_dict["Graduated Uni"] = worker.uni_status
+                ##employee_dict["Birth Year"] = worker.birth_year
+                ##employee_dict["Birth Month"] = worker.birth_month
+                ##employee_dict["Birth Day"] = worker.birth_day
+                ##employee_dict["Position"] = worker.position
+                ##employee_dict["Graduated Uni"] = worker.uni_status
                 employee_dict["Employee ID"] = worker.employee_id
                 employee_dict["Class Instance Name"] = worker.object_instance
 
