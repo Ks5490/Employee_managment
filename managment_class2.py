@@ -21,9 +21,6 @@ class employee():
                     if x <=0:
                         print("Must be positive integer greater than 0: ")
                         continue
-                    if str(x) in dict_pointers_id.keys():
-                        print("ID is taken")
-                        continue
                     return x
                 except ValueError:
                     print("You must enter a number")
@@ -100,37 +97,34 @@ class employee():
 
     def update(pointer):
 
-        while True:
+        while True: 
 
             poss_opt = ("UPDATE MENU", "------------------------", "What key do you want to update?: ","1 - Employee ID", "2 - First Name", "3 - Last Name", "4 - Year of Birth", "5 - Month of Birth", "6 - Day of Birth", "7 - Position", "8 - University Status", "9 - Exit Update menu: ")
             change = uxfunc.scroll_menu(poss_opt)
             if change == "1":
-                print("coming")
-                '''
+                print()
+                object_new_name_id = []
                 while True:
-                    new_id = employee.ID_input()
-                    if new_id in employees_dict_of_dict.keys():
+                        new_id = employee.ID_input()
+                        id_str = str(new_id)
+                        if id_str in dict_pointers_id.keys():
+                            print()
                             print("This ID is taken")
-                            continue
-                    else:
-                        old_object_name = worker.last_name + str(employee_dict["Employee ID"])
+                            print()
+                            break     
+                        else:
+                            old_id = str(pointer.employee_id)
+                            pointer.employee_id = id_str
+                            pointer.object_instance = pointer.last_name + pointer.employee_id
+                            object_new_name_id.append(pointer.object_instance)
 
-                        employee_dict["Employee ID"] = new_id
+                            for x in range(len(object_new_name_id)):
+                                object_new_name_id[x] = pointer
+                                dict_pointers_id[pointer.employee_id] = object_new_name_id[x]
+                                del dict_pointers_id[old_id]
+                            break
+                      
 
-                        new_object_name = worker.last_name + str(new_id)
-
-                    ##   employee_objects_list.append(new_object_name)
-                    ##   employee_objects_list.remove(old_object_name)
-
-            
-                    ##   employee_objects_dict[new_object_name] = employee_dict
-                    ###   del employee_objects_dict[old_object_name]
-                        break
-                print("Returning to Main Menu")
-                break
-
-                '''
-                    
             elif change == "2":
                 new_first_name = employee.string_gen("first name")
                 pointer.first_name = new_first_name
@@ -143,8 +137,6 @@ class employee():
                 pointer.object_instance = pointer.last_name + str(pointer.employee_id)
                 object_new_name.append(pointer.object_instance)
                 
-
-                    
                 
             elif change == "4":
                 new_year_ob = employee.date_check("year")
@@ -170,15 +162,14 @@ class employee():
                 new_uni = employee.get_uni_status()
                 pointer.uni_status = new_uni
 
+
             elif change == "9":
                 break
 
             else:
                 uxfunc.usage()
 
-      
-
-
+   
     def check(pointer):
         print(pointer.__dict__)                  
 
@@ -193,8 +184,9 @@ if __name__ == '__main__':
         option = uxfunc.scroll_menu(opt)
 
 
-        ## Option 1 creates new data entry ## ##WORKING WITH POINTER PASS TO FUNC ##
+        ## Option 1 creates new data entry ## 
         if option == "1":
+            print()
             employee_dict = {}
             object_name = []
             worker = employee()
@@ -236,10 +228,8 @@ if __name__ == '__main__':
 
             print()
 
-            
-           
 
-        ### WORKING WITH POINTER PASS TO FUNC###
+        ### Deletes employee based on ID ###
         elif option == "2":
             delete_id_int = employee.id_valid("you want to delete")
             delete_id = str(delete_id_int)
@@ -262,7 +252,7 @@ if __name__ == '__main__':
                 print("NO Employee with that ID")
                 print()
 
-        ### WORKING ###
+        ### prints employee total ###
         elif option == "3":
             employee_counter = 0 
             for dict in dict_pointers_id:
@@ -272,7 +262,7 @@ if __name__ == '__main__':
 
 
 
-        ###WORKING - WITH PASSED POINTER PRINT DONE IN CLASS FUNC ###
+        ### Prints dict of all employees ###
         elif option == "4":
             print()
             if dict_pointers_id:
@@ -280,8 +270,8 @@ if __name__ == '__main__':
                     employee.check(dict_pointers_id[dict])
             else:
                 print("No employee data present")
-                print()
-
+                
+            print()
 
         ###WORKING - WITH PASSED POINTER PRINT DONE IN CLASS FUNC ###
         elif option == "5":
@@ -298,7 +288,7 @@ if __name__ == '__main__':
                 print("There is no employee with this ID")
                 print()
 
-
+        ### Goes to update menu with id-pointer key value pair ###
         elif option == "6":
             update_id_int = employee.id_valid("data you want to update")
             update_id = str(update_id_int)
@@ -312,10 +302,10 @@ if __name__ == '__main__':
                 print("There is no employee with this ID")
                 print()
             
-
-
+        ### Exits the program ###
         elif option == "7":
             exit()
 
+        ### Usage instructions ###
         else:
             uxfunc.usage()
